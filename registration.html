@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html ng-app="groceryApp">
+<head>
+<meta charset="UTF-8">
+<title>Registration</title>
+
+<link rel="stylesheet" href="registration.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="app.js"></script>
+
+<style>
+.error{
+color:red;
+font-size:13px;
+}
+</style>
+
+</head>
+
+<body ng-controller="mainCtrl">
+
+<div class="bg-overlay">
+<div class="login-card">
+<center>
+
+<h2>REGISTER</h2>
+
+<form name="regForm" novalidate>
+
+<!-- NAME -->
+
+<input type="text"
+name="name"
+placeholder="Name"
+ng-model="name"
+required>
+
+<div class="error"
+ng-show="regForm.name.$touched && regForm.name.$error.required">
+Name is required
+</div>
+
+
+
+<!-- EMAIL -->
+
+<input type="email"
+name="email"
+placeholder="Email"
+ng-model="regEmail"
+ng-pattern="/^[a-zA-Z0-9._%+-]+@gmail\.com$/"
+required>
+
+<div class="error"
+ng-show="regForm.email.$touched && regForm.email.$error.required">
+Email is required
+</div>
+
+<div class="error"
+ng-show="regForm.email.$touched && regForm.email.$error.pattern">
+Enter valid Gmail @gmail.com
+</div>
+
+
+
+<!-- PASSWORD -->
+
+<input type="password"
+name="password"
+placeholder="Password"
+ng-model="regPass"
+ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\/])[A-Za-z\d@$!%*?&\/]{8,}$/"
+required>
+
+<div class="error"
+ng-show="regForm.password.$touched && regForm.password.$error.required">
+Password is required
+</div>
+
+<div class="error"
+ng-show="regForm.password.$touched && regForm.password.$error.pattern">
+Password must contain:Minimum 8 characters&strong password<br>
+
+</div>
+
+
+
+<!-- PHONE -->
+
+<input type="tel"
+name="phone"
+placeholder="Phone Number"
+ng-model="phone"
+ng-pattern="/^[0-9]{10}$/"
+required>
+
+<div class="error"
+ng-show="regForm.phone.$touched && regForm.phone.$error.required">
+Phone number required
+</div>
+
+<div class="error"
+ng-show="regForm.phone.$touched && regForm.phone.$error.pattern">
+Enter valid 10 digit phone number
+</div>
+
+
+
+<!-- DATE -->
+
+<input type="date"
+name="date"
+ng-model="regDate"
+required>
+
+<div class="error"
+ng-show="regForm.date.$touched && regForm.date.$error.required">
+Date is required
+</div>
+
+
+
+<!-- GENDER -->
+
+<select name="gender"
+ng-model="gender"
+class="select-box"
+required>
+
+<option value="">Select Gender</option>
+<option ng-repeat="g in genders">{{g}}</option>
+
+</select>
+
+<div class="error"
+ng-show="regForm.gender.$touched && regForm.gender.$error.required">
+Please select gender
+</div>
+
+<br><br>
+
+
+
+<!-- REGISTER BUTTON -->
+
+<button ng-click="register(regForm)">Register</button>
+</form>
+
+<p>
+Already have an account
+<a href="login.html">login</a>
+</p>
+
+</center>
+</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+

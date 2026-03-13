@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="groceryApp">
+<head>
+
+<title>Order Confirmation</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="app.js"></script>
+
+<style>
+
+body{
+font-family: Arial;
+margin:0;
+background: linear-gradient(135deg,#0f4c81,#6dd5fa);
+min-height:100vh;
+text-align:center;
+color:white;
+}
+
+
+.container{
+width:70%;
+margin:auto;
+margin-top:100px;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0px 5px 15px rgba(0,0,0,0.3);
+text-align:center;
+}
+
+h2{
+color:#0f4c81;
+}
+table{
+width:70%;
+margin:auto;
+margin-top:30px;
+border-collapse:collapse;
+background:white;
+color:black;
+}
+
+
+th{
+background:#0f4c81;
+color:white;
+padding:10px;
+}
+
+td{
+padding:10px;
+border:1px solid #ccc;
+color:black;
+
+}
+
+button{
+padding:10px 20px;
+margin-top:20px;
+}
+
+.place-btn{
+background:white;
+color:#0f4c81;
+padding:12px 25px;
+border:none;
+border-radius:6px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.place-btn:hover{
+background:#e6e6e6;
+}
+</style>
+
+</head>
+
+<body ng-controller="mainCtrl" ng-init="loadCart()">
+
+<h2>🧾 Order Confirmation</h2>
+
+<p>Please confirm your order</p>
+
+<table>
+
+<tr>
+<th>Item</th>
+<th>Price</th>
+<th>Quantity</th>
+<th>Total</th>
+</tr>
+
+<tr ng-repeat="c in cart">
+
+<td>{{c.name}}</td>
+<td>{{c.price}}</td>
+<td>{{c.qty}}</td>
+<td>{{c.price * c.qty}}</td>
+
+</tr>
+
+</table>
+
+<h2>Total Bill : ₹ {{getTotal()}}</h2>
+
+
+<button class="place-btn" ng-click="placeOrder()">
+Place Order
+</button>
+</body>
+</html>

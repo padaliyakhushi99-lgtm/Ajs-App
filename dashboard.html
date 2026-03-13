@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html ng-app="groceryApp">
+<head>
+
+<meta charset="UTF-8">
+<title>Grocery Dashboard</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="app.js"></script>
+
+<style>
+
+body{
+font-family: Arial;
+margin:0;
+background: linear-gradient(135deg,#0f4c81,#6dd5fa);
+}
+
+.header{
+background:#0f4c81;
+color:white;
+padding:20px;
+text-align:center;
+font-size:24px;
+}
+.container{
+width:85%;
+margin:auto;
+margin-top:30px;
+background:white;
+padding:20px;
+border-radius:10px;
+color:black;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+color:black;
+}
+
+th{
+background:#0f4c81;
+color:white;
+}
+
+td{
+color:black;
+}
+th,td{
+padding:10px;
+border:1px solid #ccc;
+text-align:center;
+}
+
+button{
+padding:5px 10px;
+cursor:pointer;
+}
+
+img{
+width:60px;
+}
+
+.cart{
+margin-top:40px;
+}
+
+
+.conf-btn{
+background:#007BFF;
+color:white;
+padding:12px 25px;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+.conf-btn:hover{
+background:#0056b3;
+}
+
+
+
+</style>
+
+</head>
+
+<body ng-controller="mainCtrl">
+
+<div class="header">
+🛒 Grocery Dashboard
+</div>
+
+<div class="container">
+
+<h3>Products</h3>
+
+<input type="text" placeholder="Search item" ng-model="searchItem">
+
+<select ng-model="sortBy">
+<option value="name">Sort by Name</option>
+<option value="price">Sort by Price</option>
+</select>
+
+<br><br>
+
+<table>
+
+<tr>
+
+<th>Item</th>
+<th>Price</th>
+<th>Quantity</th>
+<th>Add</th>
+</tr>
+
+<tr ng-repeat="g in groceries | filter:searchItem | orderBy:sortBy">
+
+
+
+<td>{{g.name}}</td>
+
+<td>₹ {{g.price}}</td>
+
+<td>
+
+<button ng-click="decreaseQty(g)">-</button>
+
+{{g.qty}}
+
+<button ng-click="increaseQty(g)">+</button>
+
+</td>
+
+<td>
+<button ng-click="addToCart(g)">Add</button>
+</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<button ng-click="goToCart()">
+Go To Cart
+</button>
+
+<div class="cart">
+
+<h3>🛒 Cart Items</h3>
+
+<table>
+
+<tr>
+<th>Item</th>
+<th>Price</th>
+<th>Quantity</th>
+<th>Total</th>
+<th>Remove</th>
+</tr>
+
+<tr ng-repeat="c in cart">
+
+<td>{{c.name}}</td>
+<td>{{c.price}}</td>
+<td>{{c.qty}}</td>
+<td>{{c.price * c.qty}}</td>
+
+<td>
+<button ng-click="removeItem(c)">Remove</button>
+</td>
+
+</tr>
+
+</table>
+
+<h2>Total Price : ₹ {{getTotal()}}</h2>
+
+<br>
+
+
+<button class="conf-btn" ng-click="confirmOrder()">
+CONFIRMORDER
+</button>
+
+</div>
+
+</div>
+
+</body>
+</html>

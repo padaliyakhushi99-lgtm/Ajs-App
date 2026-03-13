@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="groceryApp">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<link rel="stylesheet" href="login.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="app.js"></script>
+
+<style>
+.error{
+color:red;
+font-size:13px;
+}
+</style>
+
+</head>
+
+<body ng-controller="mainCtrl">
+
+<div class="bg-overlay">
+<div class="login-card">
+
+<h2>{{ loginTitle | uppercase }}</h2>
+<p class="sub">{{ loginSub | lowercase }}</p>
+
+<form name="loginForm" novalidate>
+
+
+
+<input type="email"
+name="email"
+placeholder="Enter Gmail"
+ng-model="loginEmail"
+ng-pattern="/^[a-zA-Z0-9._%+-]+@gmail\.com$/"
+required>
+
+
+
+
+
+
+<div class="error"
+ng-show="loginForm.email.$touched && loginForm.email.$error.required">
+Email is required
+</div>
+
+
+<div class="error"
+ng-show="loginForm.email.$touched && loginForm.email.$error.pattern">
+Enter valid Gmail @gmail.com
+</div>
+
+
+
+<input type="password"
+name="password"
+placeholder="Enter Password"
+ng-model="loginPass"
+ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&\/])[A-Za-z\d@$!%*?&\/]{8,}$/"
+required>
+
+
+
+
+
+<div class="error"
+ng-show="loginForm.password.$touched && loginForm.password.$error.required">
+Password is required
+</div>
+
+
+
+
+<div class="error"
+ng-show="loginForm.password.$touched && loginForm.password.$error.pattern">
+Password must contain: Minimum 8 characters&strong password<br>
+
+
+</div>
+
+
+
+
+<button type="button" ng-click="login(loginForm)">
+SIGN IN
+</button>
+
+</form>
+
+<p class="switch">
+Don’t have an account?
+<a href="registration.html">registration</a>
+</p>
+
+</div>
+</div>
+
+</body>
+</html>

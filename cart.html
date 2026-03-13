@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="groceryApp">
+<head>
+
+<title>Cart</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="app.js"></script>
+
+</head>
+
+<body ng-controller="mainCtrl">
+
+<h2>Your Cart</h2>
+
+<table border="1" width="100%">
+
+<tr>
+<th>Item</th>
+<th>Price</th>
+<th>Quantity</th>
+<th>Total</th>
+</tr>
+
+<tr ng-repeat="c in cart">
+
+<td>{{c.name}}</td>
+
+<td>{{c.price}}</td>
+
+<td>{{c.qty}}</td>
+
+<td>{{c.price * c.qty}}</td>
+
+</tr>
+
+</table>
+
+<h3>Total Amount: {{grandTotal()}}</h3>
+
+<button onclick="window.location.href='confirm.html'">
+Confirm Order
+</button>
+
+</body>
+</html>
